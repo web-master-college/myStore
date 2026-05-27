@@ -4,13 +4,14 @@ import { categoriesMap, LanguageContext, products } from '../../utils';
 import Header from '../Header/Header';
 import Section from '../Section/Section';
 import Footer from '../Footer/Footer';
-import ProductDetails from '../ProductDetails/ProductDetails';
+// import ProductDetails from '../ProductDetails/ProductDetails';
 
 
 
 function App() {
   const [term, setSearchTerm] = useState('');
   // term -->
+  
 
   console.log('term ==>  ', term);
   const laptopsOnlyProducts = useMemo(() => products.filter(p => p.categoryId === categoriesMap.Laptops.id), [products]);
@@ -24,16 +25,16 @@ function App() {
 
 
 
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <App />,
-    },
-    {
-      path: "/product/:id",
-      element: <ProductDetails />,
-    },
-  ]);
+  // const router = createBrowserRouter([
+  //   {
+  //     path: "/",
+  //     element: <App />,
+  //   },
+  //   {
+  //     path: "/product/:id",
+  //     element: <ProductDetails />,
+  //   },
+  // ]);
   
 
 
@@ -45,7 +46,7 @@ function App() {
 
         {/* <ProductDetails /> */}
 
-        <Section title="Search Results" term={term} isSearch={true} items={searchedProducts} classTitle="search-section" isSlider={true}/> */}
+        <Section title="Search Results" term={term} isSearch={true} items={searchedProducts} classTitle="search-section" isSlider={true}/>
         <Section title="Offers" items={products} classTitle="offers-section" isSlider={true}/>
         <Section title="Notebooks" items={laptopsOnlyProducts} classTitle="notebooks-section" isSlider={true}/>
 

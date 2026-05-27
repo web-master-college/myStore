@@ -1,434 +1,276 @@
-import React from 'react'
+import React, { useMemo, useState } from "react";
+import { useParams } from "react-router";
+import { products } from "../../utils";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Thumbs, Zoom } from "swiper/modules";
+
+// import "swiper/css";
+// import "swiper/css/navigation";
+// import "swiper/css/thumbs";
+// import "swiper/css/zoom";
 
 export default function ProductDetails() {
+  const { id } = useParams();
+
+  const data = useMemo(() => products.find((p) => p.productId == id), [id, products]);
+
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+
+  // console.log("id", id);
+  // console.log("data", data);
+
   return (
     <div className="product-details container mx-auto my-5 px-2 sm:px-8">
-    <div className="grid grid-cols-12 gap-5 rounded-lg bg-white p-2 xs:p-8">
-      <div className="col-span-12 max-h-[500px] md:col-span-6">
-        <div
-          className="swiper swiper-top group relative flex items-center rounded-lg">
-          <div className="swiper-wrapper">
-            <div className="swiper-slide">
-              <div className="swiper-zoom-container">
-                <img src="img/product/prod-1.jpg" alt="product" />
-              </div>
-            </div>
-            <div className="swiper-slide">
-              <div className="swiper-zoom-container">
-                <img src="img/product/prod-2.jpg" alt="product" />
-              </div>
-            </div>
-            <div className="swiper-slide">
-              <div className="swiper-zoom-container">
-                <img src="img/product/prod-3.jpg" alt="product" />
-              </div>
-            </div>
-          </div>
-          <div
-            className="button-next absolute -right-16 z-20 flex h-10 w-10 select-none items-center justify-center rounded bg-black/30 text-xl text-white shadow transition-all duration-300 group-hover:right-4 hover:bg-primary-500 hover:shadow-md">
-            &#10095;
-          </div>
-          <div
-            className="button-prev absolute -left-16 z-20 flex h-10 w-10 select-none items-center justify-center rounded bg-black/30 text-xl text-white shadow transition-all duration-300 group-hover:left-4 hover:bg-primary-500 hover:shadow-md">
-            &#10094;
-          </div>
-        </div>
-        <div className="swiper swiper-thumbs">
-          <div className="swiper-wrapper">
-            <div className="swiper-slide cursor-pointer rounded-lg">
-              <img src="img/product/prod-1.jpg" alt="product" />
-            </div>
-            <div className="swiper-slide cursor-pointer rounded-lg">
-              <img src="img/product/prod-2.jpg" alt="product" />
-            </div>
-            <div className="swiper-slide cursor-pointer rounded-lg">
-              <img src="img/product/prod-3.jpg" alt="product" />
-            </div>
-          </div>
-          <div
-            className="button-next absolute -right-16 z-20 flex h-10 w-10 select-none items-center justify-center rounded bg-black/30 text-xl text-white shadow transition-all duration-300 group-hover:right-4 hover:bg-primary-500 hover:shadow-md">
-            &#10095;
-          </div>
-          <div
-            className="button-prev absolute -left-16 z-20 flex h-10 w-10 select-none items-center justify-center rounded bg-black/30 text-xl text-white shadow transition-all duration-300 group-hover:left-4 hover:bg-primary-500 hover:shadow-md">
-            &#10094;
-          </div>
-        </div>
-      </div>
-      <div className="col-span-12 md:col-span-6">
-        <div className="my-1">
-          <a
-            className="line-clamp-2 break-all text-2xl font-medium transition-all duration-300 hover:text-primary-500"
-            href="#">
-            Ryzen 5 3600x
-          </a>
-        </div>
-        <div className="product-val-stock my-2 flex justify-between">
-          <div className="" data-rater="4"></div>
-          <div className="ml-auto">
-            <span
-              className="relative z-[4] rounded-md bg-green-300 px-2 py-1 text-xs font-bold uppercase text-white">
-              instock
-            </span>
-          </div>
-        </div>
-        <div className="my-5 flex items-center gap-5">
-          <div
-            className="flex rounded-lg bg-white px-3 py-2 text-primary-500 shadow">
-            <span className="text-sm">$</span>
-            <span className="text-2xl font-semibold leading-7">37.00</span>
-          </div>
-          <div className="flex flex-col">
-            <span className="text-md font-semibold uppercase text-green-400">
-              25% Off
-            </span>
-            <span className="prev-price text-sm text-primary-500 line-through">
-              $50.00
-            </span>
-          </div>
-        </div>
-        <div className="my-4">
-          <p className="line-clamp-5 break-all">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum
-            cupiditate repellat magni exercitationem non, quaerat consequatur.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum
-            cupiditate.
-          </p>
-        </div>
-        <div className="flex gap-1">
-          <form action="javascript:void(0)">
-            <div className="block">
-              <div className="my-3 flex flex-col gap-1">
-                <span className="font-bold">Size:</span>
-                <ul className="flex flex-wrap gap-3">
-                  <li className="relative">
-                    <input
-                      className="peer sr-only"
-                      type="radio"
-                      value=""
-                      name="size"
-                      id="size1"
-                      checked="" />
-                    <label
-                      className="flex h-8 w-10 cursor-pointer items-center justify-center rounded-lg border border-gray-300 bg-white peer-checked:border-transparent peer-checked:ring-2 peer-checked:ring-primary-500 hover:bg-gray-50 focus:outline-none"
-                      for="size1">
-                      S
-                    </label>
-                  </li>
-                  <li className="relative">
-                    <input
-                      className="peer sr-only"
-                      type="radio"
-                      value=""
-                      name="size"
-                      id="size2" />
-                    <label
-                      className="flex h-8 w-10 cursor-pointer items-center justify-center rounded-lg border border-gray-300 bg-white peer-checked:border-transparent peer-checked:ring-2 peer-checked:ring-primary-500 hover:bg-gray-50 focus:outline-none"
-                      for="size2">
-                      M
-                    </label>
-                  </li>
-                  <li className="relative">
-                    <input
-                      className="peer sr-only"
-                      type="radio"
-                      value=""
-                      name="size"
-                      id="size3" />
-                    <label
-                      className="flex h-8 w-10 cursor-pointer items-center justify-center rounded-lg border border-gray-300 bg-white peer-checked:border-transparent peer-checked:ring-2 peer-checked:ring-primary-500 hover:bg-gray-50 focus:outline-none"
-                      for="size3">
-                      L
-                    </label>
-                  </li>
-                  <li className="relative">
-                    <input
-                      className="peer sr-only"
-                      type="radio"
-                      value=""
-                      name="size"
-                      id="size4" />
-                    <label
-                      className="flex h-8 w-10 cursor-pointer items-center justify-center rounded-lg border border-gray-300 bg-white peer-checked:border-transparent peer-checked:ring-2 peer-checked:ring-primary-500 hover:bg-gray-50 focus:outline-none"
-                      for="size4">
-                      XL
-                    </label>
-                  </li>
-                </ul>
-              </div>
-              <div className="my-3 flex gap-2">
-                <div>
-                  <label className="inline-flex items-center">
-                    <input
-                      type="radio"
-                      className="cursor-pointer border-transparent bg-blue-600 text-blue-600 checked:bg-none checked:ring checked:ring-blue-300 focus:ring focus:ring-blue-300 focus:ring-offset-0"
-                      name="radio-colors"
-                      value="0"
-                      checked />
-                  </label>
+      <div className="grid grid-cols-12 gap-5 rounded-lg bg-white p-2 xs:p-8">
+        
+        {/* SLIDER */}
+        <div className="col-span-12 min-h-[550px] md:col-span-6">
+
+          {/* MAIN SLIDER */}
+          <Swiper
+            modules={[Navigation, Thumbs, Zoom]}
+            navigation={{
+              nextEl: ".button-next",
+              prevEl: ".button-prev",
+            }}
+            thumbs={{ swiper: thumbsSwiper }}
+            zoom={true}
+            spaceBetween={10}
+            className="group relative rounded-lg"
+          >
+            {data?.images?.map((image, idx) => (
+              <SwiperSlide key={idx}>
+                <div className="swiper-zoom-container">
+                  <img
+                    src={image}
+                    alt="product"
+                    className="h-[400px] w-full rounded-lg object-cover"
+                  />
                 </div>
-                <div>
-                  <label className="inline-flex items-center">
-                    <input
-                      type="radio"
-                      className="cursor-pointer border-transparent bg-red-600 text-red-600 checked:bg-none checked:ring checked:ring-red-300 focus:ring focus:ring-red-300 focus:ring-offset-0"
-                      name="radio-colors"
-                      value="1" />
-                  </label>
+              </SwiperSlide>
+            ))}
+
+            {/* NEXT */}
+            <div className="button-next absolute right-4 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 cursor-pointer items-center justify-center rounded bg-black/40 text-xl text-white transition hover:bg-primary-500">
+              &#10095;
+            </div>
+
+            {/* PREV */}
+            <div className="button-prev absolute left-4 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 cursor-pointer items-center justify-center rounded bg-black/40 text-xl text-white transition hover:bg-primary-500">
+              &#10094;
+            </div>
+          </Swiper>
+
+          {/* THUMBNAILS */}
+          <Swiper
+            onSwiper={setThumbsSwiper}
+            modules={[Thumbs]}
+            spaceBetween={10}
+            slidesPerView={3}
+            watchSlidesProgress
+            className="mt-4"
+          >
+            {data?.images?.map((image, idx) => (
+              <SwiperSlide key={idx}>
+                <img
+                  src={image}
+                  alt="thumb"
+                  className="h-[100px] w-full cursor-pointer rounded-lg border object-cover"
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+
+        {/* PRODUCT INFO */}
+        <div className="col-span-12 md:col-span-6">
+          <div className="my-1">
+            <a
+              className="line-clamp-2 break-all text-2xl font-medium transition-all duration-300 hover:text-primary-500"
+              href="#"
+            >
+              {data?.name}
+            </a>
+          </div>
+
+          <div className="product-val-stock my-2 flex justify-between">
+            <div className="" data-rater="4"></div>
+
+            <div className="ml-auto">
+              <span className="relative z-[4] rounded-md bg-green-300 px-2 py-1 text-xs font-bold uppercase text-white">
+                {data?.stock}
+              </span>
+            </div>
+          </div>
+
+          <div className="my-5 flex items-center gap-5">
+            <div className="flex rounded-lg bg-white px-3 py-2 text-primary-500 shadow">
+              <span className="text-sm">$</span>
+
+              <span className="text-2xl font-semibold leading-7">
+                {data?.price}
+              </span>
+            </div>
+
+            <div className="flex flex-col">
+              <span className="text-md font-semibold uppercase text-green-400">
+                {data?.discount}% Off
+              </span>
+
+              <span className="prev-price text-sm text-primary-500 line-through">
+                $50.00
+              </span>
+            </div>
+          </div>
+
+          <div className="my-4">
+            <p className="line-clamp-5 break-all">
+              {data?.description}
+            </p>
+          </div>
+
+          {/* SIZES */}
+          <div className="flex gap-1">
+            <form action="javascript:void(0)">
+              
+              <div className="block">
+                <div className="my-3 flex flex-col gap-1">
+                  <span className="font-bold">Size:</span>
+
+                  <ul className="flex flex-wrap gap-3">
+                    {["S", "M", "L", "XL"].map((size, idx) => (
+                      <li className="relative" key={idx}>
+                        <input
+                          className="peer sr-only"
+                          type="radio"
+                          name="size"
+                          id={`size${idx}`}
+                        />
+
+                        <label
+                          className="flex h-8 w-10 cursor-pointer items-center justify-center rounded-lg border border-gray-300 bg-white peer-checked:border-transparent peer-checked:ring-2 peer-checked:ring-primary-500 hover:bg-gray-50"
+                          htmlFor={`size${idx}`}
+                        >
+                          {size}
+                        </label>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <div>
-                  <label className="inline-flex items-center">
-                    <input
-                      type="radio"
-                      className="cursor-pointer border-transparent bg-yellow-600 text-yellow-600 checked:bg-none checked:ring checked:ring-yellow-300 focus:ring focus:ring-yellow-300 focus:ring-offset-0"
-                      name="radio-colors"
-                      value="2" />
-                  </label>
-                </div>
-                <div>
-                  <label className="inline-flex items-center">
-                    <input
-                      type="radio"
-                      className="cursor-pointer border-transparent bg-black text-black checked:bg-none checked:ring checked:ring-gray-400 focus:ring focus:ring-gray-400 focus:ring-offset-0"
-                      name="radio-colors"
-                      value="3" />
-                  </label>
+
+                {/* COLORS */}
+                <div className="my-3 flex gap-2">
+                  {[
+                    "bg-blue-600",
+                    "bg-red-600",
+                    "bg-yellow-500",
+                    "bg-black",
+                  ].map((color, idx) => (
+                    <label
+                      key={idx}
+                      className={`h-6 w-6 cursor-pointer rounded-full ${color}`}
+                    >
+                      <input
+                        type="radio"
+                        name="radio-colors"
+                        className="hidden"
+                      />
+                    </label>
+                  ))}
                 </div>
               </div>
-            </div>
-            <div className="flex flex-wrap justify-start gap-5">
-              <div className="counter inline-flex rounded-lg bg-white shadow">
-                <input
-                  className="counter-value input-number w-12 border-none bg-transparent p-1 text-center text-lg text-gray-400 focus:border-none focus:ring-0"
-                  type="number"
-                  value="0" />
-                <div className="flex w-5 flex-col justify-between">
-                  <button className="increment text-primary-500" type="button">
-                    <i className="bi bi-caret-up-fill pointer-events-none"></i>
+
+              {/* CART */}
+              <div className="flex flex-wrap justify-start gap-5">
+                <div className="counter inline-flex rounded-lg bg-white shadow">
+                  <input
+                    className="counter-value input-number w-12 border-none bg-transparent p-1 text-center text-lg text-gray-400 focus:ring-0"
+                    type="number"
+                    defaultValue="1"
+                  />
+
+                  <div className="flex w-5 flex-col justify-between">
+                    <button
+                      className="increment text-primary-500"
+                      type="button"
+                    >
+                      <i className="bi bi-caret-up-fill pointer-events-none"></i>
+                    </button>
+
+                    <button
+                      className="decrement text-primary-500"
+                      type="button"
+                    >
+                      <i className="bi bi-caret-down-fill pointer-events-none"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div className="flex gap-2">
+                  <button
+                    className="relative flex h-full w-full items-center justify-center gap-2 overflow-hidden rounded-lg bg-primary-500 p-2 transition-all duration-300 hover:bg-primary-400"
+                    type="submit"
+                  >
+                    <i className="bi bi-cart-fill relative z-[4] flex text-xl text-white"></i>
+
+                    <span className="relative z-[4] font-bold uppercase text-white">
+                      Add to cart
+                    </span>
                   </button>
-                  <button className="decrement text-primary-500" type="button">
-                    <i className="bi bi-caret-down-fill pointer-events-none"></i>
-                  </button>
+
+                  <a
+                    className="flex min-h-[40px] min-w-[40px] cursor-pointer items-center justify-center rounded-lg bg-primary-500 p-2 transition-all duration-300 hover:bg-primary-400"
+                    href="javascript:void(0)"
+                  >
+                    <i className="bi bi-heart pointer-events-none flex text-white"></i>
+                  </a>
                 </div>
               </div>
-              <div className="flex gap-2">
-                <button
-                  className="relative flex h-full w-full items-center justify-center gap-2 overflow-hidden rounded-lg bg-primary-500 p-2 transition-all duration-300 after:absolute after:left-2/4 after:top-2/4 after:h-0 after:w-0 after:rounded-lg after:bg-primary-400 after:transition-all after:duration-300 after:content-[''] hover:after:left-0 hover:after:top-0 hover:after:z-[3] hover:after:h-full hover:after:w-full"
-                  type="submit">
-                  <i
-                    className="bi bi-cart-fill relative z-[4] flex text-xl text-white"></i>
-                  <span className="relative z-[4] font-bold uppercase text-white">
-                    Add to cart
-                  </span>
-                </button>
-                <a
-                  className="tippy tippy-wishlist wishlist-button flex min-h-[40px] min-w-[40px] cursor-pointer items-center justify-center gap-2 rounded-lg bg-primary-500 p-2 transition-all duration-300 hover:bg-primary-400"
-                  href="javascript:void(0)">
-                  <i
-                    className="bi bi-heart pointer-events-none flex text-white"></i>
+            </form>
+          </div>
+
+          {/* SHARE */}
+          <div className="mt-5 border-t border-gray-200 pt-5">
+            <div className="flex gap-2">
+              <b>Share:</b>
+
+              <div className="flex items-center gap-[10px]">
+                <a href="#">
+                  <i className="bi bi-facebook flex text-zinc-500 hover:text-primary-500"></i>
+                </a>
+
+                <a href="#">
+                  <i className="bi bi-twitter-x flex text-zinc-500 hover:text-primary-500"></i>
+                </a>
+
+                <a href="#">
+                  <i className="bi bi-whatsapp flex text-zinc-500 hover:text-primary-500"></i>
                 </a>
               </div>
             </div>
-          </form>
+          </div>
         </div>
-        <div className="my-5 flex flex-col gap-2">
-          <a
-            className="rounded-lg border bg-slate-100 p-2 transition-all duration-300 hover:bg-slate-200"
-            href="javascript:void(0)"
-            data-target=".modal-shipping">
-            <div
-              className="pointer-events-none flex items-center justify-between gap-2">
-              <div className="flex items-center gap-2">
-                <i className="bi bi-truck flex text-2xl text-primary-500"></i>
-                <span>Calculate Shipping Cost</span>
+
+        {/* DESCRIPTION */}
+        <div className="col-span-12">
+          {/* <div className="liner-container mb-5 flex border-b-2 border-[rgba(119,119,119,.17)]">
+            <h1 className="mb-[-2px] inline-block border-b-2 border-primary-500 pb-3 text-xl font-bold uppercase">
+              Description
+            </h1>
+          </div>
+
+          <div className="see-more relative pb-5">
+            <div className="see-more-container gradient-bottom max-h-[220px] overflow-hidden">
+              <div className="see-more-content">
+                <p>{data?.description}</p>
               </div>
-              <i
-                className="bi bi-arrow-right-short flex text-2xl text-primary-500"></i>
             </div>
-          </a>
+          </div> */}
         </div>
-        <div className="mt-5 border-t border-gray-200 pt-5">
-          <div>
-            <b>Categories:</b>
-            <span>
-              <a href="#" className="text-zinc-500">Hardware</a>
-              ,
-              <a href="#" className="text-zinc-500">Processors</a>
-            </span>
-          </div>
-          <div className="flex gap-2">
-            <b>Share:</b>
-            <div className="flex items-center gap-[10px]">
-              <a href="#">
-                <i
-                  className="bi bi-facebook flex text-zinc-500 transition-all duration-300 hover:text-primary-500"></i>
-              </a>
-              <a href="#">
-                <i
-                  className="bi bi-twitter-x flex text-zinc-500 transition-all duration-300 hover:text-primary-500"></i>
-              </a>
-              <a href="#">
-                <i
-                  className="bi bi-whatsapp flex text-zinc-500 transition-all duration-300 hover:text-primary-500"></i>
-              </a>
-              <a href="#">
-                <i
-                  className="bi bi-link-45deg flex text-zinc-500 transition-all duration-300 hover:text-primary-500"></i>
-              </a>
-            </div>
-          </div>
-        </div>
+
       </div>
-      <div className="col-span-12">
-        <div
-          className="liner-container mb-5 flex border-b-2 border-[rgba(119,119,119,.17)]">
-          <h1
-            className="mb-[-2px] inline-block border-b-2 border-primary-500 pb-3 text-xl font-bold uppercase">
-            Specifications
-          </h1>
-        </div>
-        <div className="grid grid-cols-3 gap-5">
-          <div className="col-span-12 sm:col-span-1">
-            <span>
-              <b>Aplication:</b>
-              Desktop
-            </span>
-          </div>
-          <div className="col-span-12 sm:col-span-1">
-            <span>
-              <b># of CPU cores:</b>
-              3.8GHz
-            </span>
-          </div>
-          <div className="col-span-12 sm:col-span-1">
-            <span>
-              <b>Total L3 cache:</b>
-              32MB
-            </span>
-          </div>
-          <div className="col-span-12 sm:col-span-1">
-            <span>
-              <b># of threads:</b>
-              12
-            </span>
-          </div>
-          <div className="col-span-12 sm:col-span-1">
-            <span>
-              <b>Total L1 cache:</b>
-              384KB
-            </span>
-          </div>
-          <div className="col-span-12 sm:col-span-1">
-            <span>
-              <b>TDP/Default TDP:</b>
-              95W
-            </span>
-          </div>
-          <div className="col-span-12 sm:col-span-1">
-            <span>
-              <b>CPU Socket:</b>
-              AM4
-            </span>
-          </div>
-          <div className="col-span-12 sm:col-span-1">
-            <span>
-              <b>Temp. max:</b>
-              95°C
-            </span>
-          </div>
-          <div className="col-span-12 sm:col-span-1">
-            <span>
-              <b>Product line:</b>
-              AMD Ryzen™ 5 Desktop Processors
-            </span>
-          </div>
-          <div className="col-span-12 sm:col-span-1">
-            <span>
-              <b>Max Magnification Clock:</b>
-              Up to 4.4GHz
-            </span>
-          </div>
-          <div className="col-span-12 sm:col-span-1">
-            <span>
-              <b>Total L2 cache:</b>
-              3MB
-            </span>
-          </div>
-          <div className="col-span-12 sm:col-span-1">
-            <span>
-              <b>Gamer:</b>
-              Yes
-            </span>
-          </div>
-        </div>
-      </div>
-      <div className="col-span-12">
-        <div
-          className="liner-container mb-5 flex border-b-2 border-[rgba(119,119,119,.17)]">
-          <h1
-            className="mb-[-2px] inline-block border-b-2 border-primary-500 pb-3 text-xl font-bold uppercase">
-            Description
-          </h1>
-        </div>
-        <div className="see-more relative pb-5">
-          <div
-            className="see-more-container gradient-bottom max-h-[220px] overflow-hidden">
-            <div className="see-more-content">
-              <p>
-                Lorem Unde sapiente quisquam placeat excepturi sunt mollitia
-                vero cumque, aliquam libero ipsum dolor sit amet consectetur
-                adipisicing elit. Unde sapiente quisquam placeat excepturi
-                sunt mollitia vero cumque, aliquam libero veniam odit
-                inventore totam quis! Hic quis perferendis quaerat enim magni.
-              </p>
-              <p>
-                Lorem Unde sapiente quisquam placeat excepturi sunt mollitia
-                vero cumque, aliquam libero ipsum dolor sit amet consectetur
-                adipisicing elit. Repellat culpa quidem reprehenderit dolor
-                aperiam, eius consequatur est deserunt. Nisi nesciunt
-                repellendus dolorem quam obcaecati atque animi quas debitis
-                qui harum.
-              </p>
-              <p>
-                Lorem Unde sapiente quisquam placeat excepturi sunt mollitia
-                vero cumque, aliquam libero ipsum, dolor sit amet consectetur
-                adipisicing elit. Aut, veritatis. Ea voluptatibus eveniet,
-                quam dicta quisquam repellat maxime libero. Enim omnis quis,
-                cumque facilis doloremque doloribus tempore expedita quia
-                accusantium.
-              </p>
-              <p>
-                Lorem Unde sapiente quisquam placeat excepturi sunt mollitia
-                vero cumque, aliquam libero ipsum dolor sit amet consectetur
-                adipisicing elit. Unde sapiente quisquam placeat excepturi
-                sunt mollitia vero cumque, aliquam libero veniam odit
-                inventore totam quis! Hic quis perferendis quaerat enim magni.
-              </p>
-              <p>
-                Lorem Unde sapiente quisquam placeat excepturi sunt mollitia
-                vero cumque, aliquam libero ipsum dolor sit amet consectetur
-                adipisicing elit. Repellat culpa quidem reprehenderit dolor
-                aperiam, eius consequatur est deserunt. Nisi nesciunt
-                repellendus dolorem quam obcaecati atque animi quas debitis
-                qui harum.
-              </p>
-              <p>
-                Lorem Unde sapiente quisquam placeat excepturi sunt mollitia
-                vero cumque, aliquam libero ipsum, dolor sit amet consectetur
-                adipisicing elit. Aut, veritatis. Ea voluptatibus eveniet,
-                quam dicta quisquam repellat maxime libero. Enim omnis quis,
-                cumque facilis doloremque doloribus tempore expedita quia
-                accusantium.
-              </p>
-            </div>
-          </div>
-          <button
-            className="btn-see-more absolute bottom-0 z-10 flex w-full justify-center hover:text-primary-500">
-            <i
-              className="bi bi-chevron-compact-down flex text-xl transition-all duration-300"></i>
-          </button>
-        </div>
-      </div>
+      <div className="row">
       <div className="col-span-12">
         <div className="tab-container">
           <ul className="flex justify-between">
@@ -685,7 +527,9 @@ export default function ProductDetails() {
           </div>
         </div>
       </div>
+
+
+      </div>
     </div>
-  </div>
   )
 }

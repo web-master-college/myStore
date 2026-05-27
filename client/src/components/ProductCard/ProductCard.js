@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router'
 import { calculatePrice } from '../../utils'
 
 
@@ -24,8 +25,7 @@ export default function ProductCard({data}) {
         <a
           className="tippy tippy-left-wishlist wishlist-button flex h-9 w-9 cursor-pointer items-center justify-center gap-2 rounded-lg bg-black/30 transition-all duration-300 hover:bg-primary-400"
           href="javascript:void(0)">
-          <i
-            className="bi bi-heart pointer-events-none flex text-white"></i>
+          <i className="bi bi-heart pointer-events-none flex text-white"></i>
         </a>
       </div>
       <div className="p-[2px]">
@@ -46,12 +46,12 @@ export default function ProductCard({data}) {
       </span>}
     </div>
     <div className="h-[190px] overflow-hidden rounded-lg">
-      <a href="#">
+      <Link to={`/product-details/${data.productId}`}>
         <img
           className="h-full w-full object-contain"
           src={`${data.imageUrl}`}
           alt="product" />
-      </a>
+      </Link>
     </div>
     <div className="my-2 flex justify-between">
       <div className="my-2" data-rater="5"></div>
@@ -63,9 +63,9 @@ export default function ProductCard({data}) {
       </div>
     </div>
     <div className="my-1">
-      <a className="line-clamp-1break-all font-medium" href="#">
+     <Link className="line-clamp-1break-all font-medium"  to={`/product-details/${data.productId}`}>
         {data.name}
-      </a>
+      </Link>
     </div>
     <div className="my-1">
       <p className="line-clamp-2 text-sm text-gray-400">
@@ -80,13 +80,11 @@ export default function ProductCard({data}) {
       </span>)}
     </div>
     <div className="mt-auto">
-      <a
-        className="relative flex w-full items-center justify-center overflow-hidden rounded-lg bg-primary-500 p-2 transition-all duration-300 after:absolute after:left-2/4 after:top-2/4 after:h-0 after:w-0 after:rounded-lg after:bg-primary-400 after:transition-all after:duration-300 after:content-[''] hover:after:left-0 hover:after:top-0 hover:after:z-[3] hover:after:h-full hover:after:w-full"
-        href="#">
+    <Link className="relative flex w-full items-center justify-center overflow-hidden rounded-lg bg-primary-500 p-2 transition-all duration-300 after:absolute after:left-2/4 after:top-2/4 after:h-0 after:w-0 after:rounded-lg after:bg-primary-400 after:transition-all after:duration-300 after:content-[''] hover:after:left-0 hover:after:top-0 hover:after:z-[3] hover:after:h-full hover:after:w-full"  to={`/product-details/${data.productId}`}>
         <span className="relative z-[4] font-bold uppercase text-white">
           View details
         </span>
-      </a>
+      </Link>
     </div>
   </div>
   )

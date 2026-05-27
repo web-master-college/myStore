@@ -1,6 +1,8 @@
 import React from 'react'
+import { Link } from 'react-router';
 
 export default function Nav() {
+  
   return (
     <nav className="container mx-auto px-2 sm:px-8">
     <ul
@@ -495,7 +497,7 @@ export default function Nav() {
       </li>
       <li
         className="relative cursor-pointer after:absolute after:-bottom-[5px] after:left-0 after:right-0 after:h-1 after:w-full after:origin-center after:scale-x-0 after:rounded-lg after:bg-primary-500 after:transition-transform after:duration-200 after:content-[''] hover:after:scale-x-100">
-        <a href="index.html">Home</a>
+        <Link href="/">Home</Link>
       </li>
       <li
         className="group relative cursor-pointer after:absolute after:-bottom-[5px] after:left-0 after:right-0 after:h-1 after:w-full after:origin-center after:scale-x-0 after:rounded-lg after:bg-primary-500 after:transition-transform after:duration-200 after:content-[''] hover:after:scale-x-100">
@@ -726,7 +728,7 @@ export default function Nav() {
       </li>
       <li
         className="relative cursor-pointer after:absolute after:-bottom-[5px] after:left-0 after:right-0 after:h-1 after:w-full after:origin-center after:scale-x-0 after:rounded-lg after:bg-primary-500 after:transition-transform after:duration-200 after:content-[''] hover:after:scale-x-100">
-        <a href="contact-us.html">Contact Us</a>
+        <Link to="/contact-us">Contact Us</Link>
       </li>
     </ul>
   </nav>
