@@ -18,7 +18,7 @@ export default function ProductDetails() {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   // console.log("id", id);
-  // console.log("data", data);
+  // console.log("data", data); sdfd
 
   return (
     <div className="product-details container mx-auto my-5 px-2 sm:px-8">
