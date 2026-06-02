@@ -1,8 +1,10 @@
 import React, { useRef } from 'react'
+import { useSelector } from 'react-redux';
 import Nav from '../Nav/Nav'
 
 export default function Header(props) {
   const inputRef = useRef();
+  const totalWisthListProducts = useSelector((state) => state.wishlist.totalWisthListProducts)
 
 
   const onSubmitSearch = (event) =>{
@@ -92,13 +94,13 @@ export default function Header(props) {
           <div
             className="group-items hidden items-center gap-5 text-white lg:flex">
             <div className="relative">
-              <a data-target=".modal-wishlist" href="javascript:void(0)">
+              <a data-target=".modal-wishlist" onClick={() => props.setIsOpenWishList(prev => !prev)}>
                 <i
                   className="bi bi-heart pointer-events-none flex translate-y-1 transform text-[32px] text-white"></i>
               </a>
               <span
                 className="absolute right-[-6px] top-0 flex h-[15px] min-w-[15px] items-center justify-center rounded-xl bg-primary-500 px-[2px] text-xs text-white">
-                0
+                {totalWisthListProducts}
               </span>
             </div>
             <div className="relative">

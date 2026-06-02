@@ -1,10 +1,17 @@
-import React, { useMemo } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import Section from '../Section/Section'
-import { categoriesMap, products } from '../../utils';
+import { categoriesMap, SERVER_URL } from '../../utils';
 
 
 
 export default function Home() {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() =>{
+    fetch(`${SERVER_URL}/products`)
+    .then(respose => respose.json())
+    .then(data => setProducts(data));
+  }, [])
 
 const laptopsOnlyProducts = useMemo(() => products.filter(p => p.categoryId === categoriesMap.Laptops.id), [products]);
   return (

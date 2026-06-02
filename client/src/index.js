@@ -8,7 +8,8 @@ import ProductDetails from './components/ProductDetails/ProductDetails';
 import Home from './components/Home/Home';
 import ContactUs from './components/ContactUs/ContactUs';
 import Layout from "./components/Layout/Layout";
-
+import { store } from './app/store';
+import { Provider } from 'react-redux';
 
 
 
@@ -37,7 +38,9 @@ import Layout from "./components/Layout/Layout";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<RouterProvider router={router} />);
+root.render( <Provider store={store}>
+               <RouterProvider router={router} />
+              </Provider>);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

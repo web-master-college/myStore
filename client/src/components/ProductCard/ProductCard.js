@@ -1,5 +1,7 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import { Link } from 'react-router'
+import { toggle } from '../../features/wishlist/wishListSlice'
 import { calculatePrice } from '../../utils'
 
 
@@ -14,7 +16,7 @@ import { calculatePrice } from '../../utils'
 */
 
 export default function ProductCard({data}) {
- 
+  const dispatch = useDispatch()
     
  
     return (
@@ -24,7 +26,7 @@ export default function ProductCard({data}) {
       <div className="p-[2px]">
         <a
           className="tippy tippy-left-wishlist wishlist-button flex h-9 w-9 cursor-pointer items-center justify-center gap-2 rounded-lg bg-black/30 transition-all duration-300 hover:bg-primary-400"
-          href="javascript:void(0)">
+          onClick={() => dispatch(toggle(data))}>
           <i className="bi bi-heart pointer-events-none flex text-white"></i>
         </a>
       </div>

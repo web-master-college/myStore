@@ -22,7 +22,7 @@ export default function ProductDetails() {
 
   return (
     <div className="product-details container mx-auto my-5 px-2 sm:px-8">
-      <div className="grid grid-cols-12 gap-5 rounded-lg bg-white p-2 xs:p-8">
+      <div className="grid grid-cols-12 gap-5 rounded-lg bg-white p-2 xs:p-8" style={{marginBottom: "80px"}}>
         
         {/* SLIDER */}
         <div className="col-span-12 min-h-[550px] md:col-span-6">
